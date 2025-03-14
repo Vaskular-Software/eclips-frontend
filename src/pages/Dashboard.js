@@ -81,19 +81,17 @@ const Dashboard = () => {
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
                         />
-                       <Button 
-    className={`px-7 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center gap-3 text-lg text-white ${loading ? "bg-gray-600 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-800 shadow-lg transform hover:scale-105 active:scale-95"}`}
-    disabled={loading}
->
-    {loading ? <Loader2 className="animate-spin" size={24} /> : null}
-    {loading ? "Scanning..." : "Scan Now"}
-</Button>
-
-
+                        <Button 
+                            className={`px-7 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center gap-3 text-lg text-white ${loading ? "bg-gray-600 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-800 shadow-lg transform hover:scale-105 active:scale-95"}`}
+                            disabled={loading}
+                        >
+                            {loading ? <Loader2 className="animate-spin" size={24} /> : null}
+                            {loading ? "Scanning..." : "Scan Now"}
+                        </Button>
                     </div>
-                    
+    
                     <Dynamic3DGraph data={data} />
-                    
+    
                     <div className="p-6 bg-gray-900 rounded-lg shadow-2xl backdrop-blur-lg">
                         <ResponsiveContainer width="100%" height={300}>
                             <LineChart data={data}>
@@ -106,8 +104,8 @@ const Dashboard = () => {
                     </div>
                 </CardContent>
             </Card>
-        </div>
+        </div> // **THIS WAS MISSING**
     );
-};
+    
 
 export default Dashboard;
