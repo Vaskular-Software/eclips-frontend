@@ -15,8 +15,9 @@ const Button = ({ children, ...props }) => (
 const Input = (props) => <input className="p-3 border rounded-lg bg-gray-900 text-white" {...props} />;
 
 // Dynamic Imports
-const HolographicEffect = dynamic(() => import('@/components/HolographicEffect'), { ssr: false });
-const Dynamic3DGraph = dynamic(() => import('@/components/Dynamic3DGraph'), { ssr: false });
+const HolographicEffect = dynamic(() => import('../components/HolographicEffect'), { ssr: false });
+const Dynamic3DGraph = dynamic(() => import('../components/Dynamic3DGraph'), { ssr: false });
+
 
 const Dashboard = () => {
     const [input, setInput] = useState("");
