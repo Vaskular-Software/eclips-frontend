@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+const Card = ({ children }) => <div className="p-6 bg-gray-800 rounded-lg">{children}</div>;
+const CardContent = ({ children }) => <div>{children}</div>;
+const Button = ({ children, ...props }) => (
+    <button className="px-4 py-2 bg-blue-600 text-white rounded-lg" {...props}>{children}</button>
+);
+const Input = (props) => <input className="p-3 border rounded-lg bg-gray-900 text-white" {...props} />;
+
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { motion } from "framer-motion";
 import { AlertCircle, ShieldCheck, Loader2 } from "lucide-react";
