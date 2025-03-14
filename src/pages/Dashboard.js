@@ -1,4 +1,12 @@
 import { useState, useEffect } from 'react';
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import { motion } from "framer-motion";
+import { Loader2 } from "lucide-react";
+import Particles from "react-tsparticles";
+import { loadFull } from "tsparticles";
+import dynamic from 'next/dynamic';
+
+// Temporary UI Components
 const Card = ({ children }) => <div className="p-6 bg-gray-800 rounded-lg">{children}</div>;
 const CardContent = ({ children }) => <div>{children}</div>;
 const Button = ({ children, ...props }) => (
@@ -6,22 +14,13 @@ const Button = ({ children, ...props }) => (
 );
 const Input = (props) => <input className="p-3 border rounded-lg bg-gray-900 text-white" {...props} />;
 
-import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
-import { motion } from "framer-motion";
-import { AlertCircle, ShieldCheck, Loader2 } from "lucide-react";
-import Particles from "react-tsparticles";
-import { loadFull } from "tsparticles";
-import dynamic from 'next/dynamic';
-
+// Dynamic Imports
 const HolographicEffect = dynamic(() => import('@/components/HolographicEffect'), { ssr: false });
 const Dynamic3DGraph = dynamic(() => import('@/components/Dynamic3DGraph'), { ssr: false });
 
 const Dashboard = () => {
     const [input, setInput] = useState("");
     const [loading, setLoading] = useState(false);
-    const [misinfoAlert, setMisinfoAlert] = useState(false);
-    const [identityAlert, setIdentityAlert] = useState(false);
-    const [darkWebAlert, setDarkWebAlert] = useState(false);
     const [data, setData] = useState([
         { name: 'Jan', risk: 20 },
         { name: 'Feb', risk: 40 },
@@ -36,14 +35,8 @@ const Dashboard = () => {
 
     const handleScan = () => {
         setLoading(true);
-        setMisinfoAlert(false);
-        setIdentityAlert(false);
-        setDarkWebAlert(false);
         setTimeout(() => {
             setData(data.map(d => ({ ...d, risk: Math.floor(Math.random() * 100) })));
-            setMisinfoAlert(Math.random() > 0.5);
-            setIdentityAlert(Math.random() > 0.5);
-            setDarkWebAlert(Math.random() > 0.5);
             setLoading(false);
         }, 2000);
     };
@@ -86,8 +79,11 @@ const Dashboard = () => {
                             onChange={(e) => setInput(e.target.value)}
                         />
                         <Button 
-                            className={`px-7 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center gap-3 text-lg text-white ${loading ? "bg-gray-600 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-800 shadow-lg transform hover:scale-105 active:scale-95"}`}
+                            className={`px-7 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center gap-3 text-lg text-white ${
+                                loading ? "bg-gray-600 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-800 shadow-lg transform hover:scale-105 active:scale-95"
+                            }`}
                             disabled={loading}
+                            onClick={handleScan}
                         >
                             {loading ? <Loader2 className="animate-spin" size={24} /> : null}
                             {loading ? "Scanning..." : "Scan Now"}
@@ -113,3 +109,4 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
