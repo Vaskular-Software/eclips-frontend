@@ -83,7 +83,7 @@ const Dashboard = () => {
                         />
                         <Button 
                             className={`px-7 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center gap-3 text-lg text-white ${loading ? "bg-gray-600 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-800 shadow-lg transform hover:scale-105 active:scale-95"}`}
-                            onClick={handleScan}
+
                             disabled={loading}
                         >
                             {loading ? <Loader2 className="animate-spin" size={24} /> : null}
